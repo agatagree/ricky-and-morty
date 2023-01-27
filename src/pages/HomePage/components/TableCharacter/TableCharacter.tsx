@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { API_URL } from "api/consts";
+import { ErrorHandler } from "utils/ErrorHandler";
+import { Info, Character } from "utils/Types";
 import { useFetch } from "utils/useFetch";
 import {
   CharacterTableHead,
@@ -7,32 +9,26 @@ import {
   Pagination,
 } from "./components";
 import { TableContainer, TableBody, Table, Paper } from "@mui/material";
-import { AlertMessage, Loader } from "components";
 
 export const TableCharacter = ({ queryName }: { queryName: string }) => {
   const [currentUrl, setCurrentUrl] = useState(API_URL);
-  const { data, error, loading } = useFetch(currentUrl);
+  const fetchResult = useFetch(currentUrl);
+  const { data } = fetchResult as { data: Info<Character[]> };
+  const { error, loading } = fetchResult;
+
   const characters = data?.results;
 
   useEffect(() => {
     setCurrentUrl(`${API_URL}?name=${queryName}`);
   }, [queryName]);
 
-  if (loading === true) {
-    return <Loader />;
-  }
-  if (!error && data?.error) {
-    return <AlertMessage severity={"info"} type={"emptyData"} />;
-  }
-  if (error) {
-    return <AlertMessage severity={"error"} />;
-  }
   return (
     <>
-      {data ? (
+      <ErrorHandler error={error} loading={loading} data={data} />
+      {data && !data.error ? (
         <Paper sx={{ mb: 2, overflowX: "auto" }}>
           <TableContainer sx={{ mb: 2 }}>
-            <Table stickyHeader aria-labelledby="character-table">
+            <Table aria-labelledby="character-table">
               <CharacterTableHead />
               <TableBody>
                 {characters?.map((character, index) => {
@@ -45,9 +41,7 @@ export const TableCharacter = ({ queryName }: { queryName: string }) => {
           </TableContainer>
           <Pagination data={data} setCurrentUrl={setCurrentUrl} />
         </Paper>
-      ) : (
-        <Loader />
-      )}
+      ) : null}
     </>
   );
 };

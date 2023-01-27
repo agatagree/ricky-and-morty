@@ -10,7 +10,10 @@ export const AppRouter = () => {
       sx={{
         flex: 1,
         display: "flex",
-        my: 4
+        flexDirection: "column",
+        gap: 3,
+        overflow: "hidden",
+        my: 4,
       }}
     >
       <Routes>

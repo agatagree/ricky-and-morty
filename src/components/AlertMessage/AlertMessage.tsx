@@ -5,7 +5,7 @@ const alertType = {
     text: "Sorry, page not found.",
   },
   emptyData: {
-    text: "Sorry, there is nothing here.Try with diffrent name.",
+    text: "Sorry, there is no character matching your criteria.",
   },
 };
 
@@ -19,5 +19,5 @@ export const AlertMessage = ({ type, severity }: AlertType) => {
     <Alert variant="outlined" severity={severity}>
       {type ? alertType[type].text : "Sorry, an error occurs"}
     </Alert>
-  );
+  )
 };

@@ -3,7 +3,7 @@ import { Info, Character } from "utils/Types";
 import { TablePagination } from "@mui/material";
 
 type PaginationType = {
-  data: Info<Character[]>;
+  data: Info<Character[] | Character>;
   setCurrentUrl: Dispatch<SetStateAction<string>>;
 };
 

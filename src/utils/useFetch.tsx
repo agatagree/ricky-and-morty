@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { Character, Info } from "./Types";
 
+type CharcterType = Character | Info<Character[]>
+
 export const useFetch = (url: string) => {
-  const [data, setData] = useState<Info<Character[]>>();
+  const [data, setData] = useState<CharcterType>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
