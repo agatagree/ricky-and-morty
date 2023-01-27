@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { AppBar, Typography } from "@mui/material";
 
 export const Header = () => {
@@ -6,8 +7,8 @@ export const Header = () => {
       <Typography
         variant="h6"
         noWrap
-        component="a"
-        href="/"
+        component={Link}
+        to="/"
         sx={{
           mr: 2,
           fontWeight: 700,

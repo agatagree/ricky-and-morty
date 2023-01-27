@@ -6,15 +6,16 @@ type ErrorHandlerType = {
   loading: boolean;
   data: Info<Character[]> | Character | undefined;
 };
+
 export const ErrorHandler = ({ error, loading, data }: ErrorHandlerType) => {
   if (loading === true) {
-    return <Loader />
+    return <Loader />;
   }
   if (!error && data?.error) {
-    return <AlertMessage severity={"info"} type={"emptyData"} />
+    return <AlertMessage severity={"info"} type={"emptyData"} />;
   }
   if (error) {
-    return <AlertMessage severity={"error"} />
+    return <AlertMessage severity={"error"} />;
   }
   return null;
 };

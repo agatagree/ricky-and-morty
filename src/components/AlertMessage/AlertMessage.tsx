@@ -11,7 +11,7 @@ const alertType = {
 
 type AlertType = {
   type?: keyof typeof alertType;
-  severity?: "error" | "warning" | "info" | "success";
+  severity?: "error" | "info";
 };
 
 export const AlertMessage = ({ type, severity }: AlertType) => {
@@ -19,5 +19,5 @@ export const AlertMessage = ({ type, severity }: AlertType) => {
     <Alert variant="outlined" severity={severity}>
       {type ? alertType[type].text : "Sorry, an error occurs"}
     </Alert>
-  )
+  );
 };

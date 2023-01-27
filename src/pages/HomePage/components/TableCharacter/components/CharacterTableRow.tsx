@@ -4,18 +4,13 @@ import { TableRow, TableCell } from "@mui/material";
 
 export const CharacterTableRow = ({ character }: { character: Character }) => {
   return (
-    <TableRow
-      hover
-      tabIndex={-1}
-      key={character.id}
-      component={Link}
-      to={`/${character.id}`}
-      sx={{ textDecoration: "none" }}
-    >
+    <TableRow hover key={character.id}>
       <TableCell>{character.name}</TableCell>
       <TableCell>{character.status}</TableCell>
       <TableCell>{character.species}</TableCell>
-      <TableCell>{character.url}</TableCell>
+      <TableCell>
+        <Link to={`/${character.id}`}>{character.url}</Link>
+      </TableCell>
     </TableRow>
   );
 };

@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom";
-import { Container } from "@mui/material";
-import { AlertMessage } from "components";
 import { HomePage } from "pages/HomePage";
 import { SingleCharacter } from "pages/SingleCharacter";
+import { AlertMessage } from "components";
+import { Container } from "@mui/material";
 
 export const AppRouter = () => {
   return (

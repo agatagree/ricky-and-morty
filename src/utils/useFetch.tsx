@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Character, Info } from "./Types";
 
-type CharcterType = Character | Info<Character[]>
+type CharcterType = Character | Info<Character[]>;
 
 export const useFetch = (url: string) => {
   const [data, setData] = useState<CharcterType>();
