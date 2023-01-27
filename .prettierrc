@@ -4,7 +4,7 @@
   "importOrder": [
     "^react(.*)",
     "^api",
-    "^provider/",
+    "^routes/",
     "^components/",
     "^utils",
     "antd/(.*)",
