@@ -1,21 +1,14 @@
 import { Dispatch, SetStateAction } from "react";
-import { AlertMessage } from "components";
-import { ErrorHandler } from "utils/ErrorHandler";
 import { Episode } from "utils/Types";
 import { useFetch } from "utils/useFetch";
-import { Typography, Paper, Skeleton } from "@mui/material";
+import { Typography, Skeleton } from "@mui/material";
 
 type SingleEpisodeTypes = {
   url: string;
-  errorState: boolean;
   setErrorState: Dispatch<SetStateAction<boolean>>;
 };
 
-export const SingleEpisode = ({
-  url,
-  errorState,
-  setErrorState,
-}: SingleEpisodeTypes) => {
+export const SingleEpisode = ({ url, setErrorState }: SingleEpisodeTypes) => {
   const fetchResult = useFetch(url);
   const { data } = fetchResult as { data: Episode };
   const { error, loading } = fetchResult;
@@ -31,14 +24,13 @@ export const SingleEpisode = ({
       />
     );
   }
-  if (error) {
+  if (error || data?.error) {
     setErrorState(true);
     return null;
   }
   return (
     <>
       {data && !data.error ? (
-    
         <Typography sx={{ mb: 1 }}>
           {data.episode}, {data.name}
         </Typography>

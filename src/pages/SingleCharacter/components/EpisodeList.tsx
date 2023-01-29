@@ -6,11 +6,11 @@ import { Typography, Paper } from "@mui/material";
 export const EpisodeList = ({ episodeData }: { episodeData: string[] }) => {
   const [errorState, setErrorState] = useState(false);
 
-  if (errorState) {
-    <SnackBarMessage text={"Sorry, some episodes may be missing"} />;
-  }
   return (
     <>
+      {errorState && (
+        <SnackBarMessage text={"Sorry, some episodes may be missing"} />
+      )}
       <Paper sx={{ display: "flex", flexDirection: "column", p: 2 }}>
         <Typography variant="h6" sx={{ mb: 2 }}>
           Episode list:{" "}
@@ -19,7 +19,6 @@ export const EpisodeList = ({ episodeData }: { episodeData: string[] }) => {
           <SingleEpisode
             url={episode}
             key={index}
-            errorState={errorState}
             setErrorState={setErrorState}
           />
         ))}

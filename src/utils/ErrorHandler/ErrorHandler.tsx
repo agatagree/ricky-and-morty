@@ -1,5 +1,5 @@
-import { Character, Info } from "utils/Types";
 import { AlertMessage, Loader } from "components";
+import { Character, Info } from "utils/Types";
 
 type ErrorHandlerType = {
   error: string | null;

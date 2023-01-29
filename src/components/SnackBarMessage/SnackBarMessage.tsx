@@ -32,6 +32,7 @@ export const SnackBarMessage = ({ text }: { text: string }) => {
       onClose={handleClose}
       message={text}
       action={action}
+      anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
     />
   );
 };
