@@ -32,3 +32,10 @@ export interface Info<T> {
   results?: T;
   error?: string;
 }
+
+export interface Episode extends ResourceBase {
+  air_date: string;
+  episode: string;
+  characters: string[];
+  error?: string;
+}
