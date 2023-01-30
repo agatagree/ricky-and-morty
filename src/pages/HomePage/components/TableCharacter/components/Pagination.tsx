@@ -1,14 +1,25 @@
-import { useState, Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { Info, Character } from "utils/Types";
+import { OrderByType, OrderType } from "./utils/SortType";
 import { TablePagination } from "@mui/material";
 
 type PaginationType = {
   data: Info<Character[] | Character>;
   setCurrentUrl: Dispatch<SetStateAction<string>>;
+  setOrder: Dispatch<SetStateAction<OrderType>>;
+  setOrderBy: Dispatch<SetStateAction<OrderByType>>;
+  page: number;
+  setPage: Dispatch<SetStateAction<number>>;
 };
 
-export const Pagination = ({ data, setCurrentUrl }: PaginationType) => {
-  const [page, setPage] = useState(0);
+export const Pagination = ({
+  data,
+  setCurrentUrl,
+  setOrder,
+  setOrderBy,
+  page,
+  setPage,
+}: PaginationType) => {
   const dataInfo = data?.info;
 
   const handleChangePage = (event: unknown, newPage: number) => {
@@ -18,6 +29,8 @@ export const Pagination = ({ data, setCurrentUrl }: PaginationType) => {
     } else if (newPage < page && dataInfo?.prev) {
       setCurrentUrl(dataInfo?.prev);
     }
+    setOrderBy("id");
+    setOrder("asc");
   };
 
   return (

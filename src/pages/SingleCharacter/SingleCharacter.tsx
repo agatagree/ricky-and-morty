@@ -36,7 +36,7 @@ export const SingleCharacter = () => {
                 objectFit: "cover",
               }}
               src={data.image}
-              alt={data.name}
+              alt={data.status}
             />
             <Box
               sx={{
@@ -45,7 +45,7 @@ export const SingleCharacter = () => {
                 justifyContent: "flex-end",
               }}
             >
-              <Typography variant="h3">{data.name}</Typography>
+              <Typography variant="h3">{data.status}</Typography>
               <Typography>
                 {data.status} | {data.species}
               </Typography>
