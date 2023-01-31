@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { Info, Character } from "utils/Types";
-import { OrderByType, OrderType } from "./utils/SortType";
+import { OrderByType, OrderType } from "../utils/SortType";
 import { TablePagination } from "@mui/material";
 
 type PaginationType = {

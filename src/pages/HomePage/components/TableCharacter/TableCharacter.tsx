@@ -8,7 +8,7 @@ import {
   CharacterTableBody,
   Pagination,
 } from "./components";
-import { OrderByType, OrderType } from "./components/utils/SortType";
+import { OrderByType, OrderType } from "./utils/SortType";
 import { TableContainer, Table, Paper } from "@mui/material";
 
 export const TableCharacter = ({ queryName }: { queryName: string }) => {
@@ -16,7 +16,7 @@ export const TableCharacter = ({ queryName }: { queryName: string }) => {
   const [orderBy, setOrderBy] = useState<OrderByType>("id");
   const [order, setOrder] = useState<OrderType>("asc");
   const [page, setPage] = useState(0);
-  
+
   const fetchResult = useFetch(currentUrl);
   const { data } = fetchResult as { data: Info<Character[]> };
   const { error, loading } = fetchResult;

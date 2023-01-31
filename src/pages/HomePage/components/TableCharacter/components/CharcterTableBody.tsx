@@ -1,6 +1,6 @@
 import { Character } from "utils/Types";
+import { OrderByType, OrderType } from "../utils/SortType";
 import { CharacterTableRow } from "./CharacterTableRow";
-import { OrderByType, OrderType } from "./utils/SortType";
 import { TableBody } from "@mui/material";
 
 type CharacterTableType = {

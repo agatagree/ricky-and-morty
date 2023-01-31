@@ -3,8 +3,7 @@ import { API_URL } from "api/consts";
 import { ErrorHandler } from "utils/ErrorHandler";
 import { Character } from "utils/Types";
 import { useFetch } from "utils/useFetch";
-import { DetialedSection } from "./components/DetailedSection";
-import { EpisodeList } from "./components/EpisodeList";
+import { DetialedSection, EpisodeList } from "./components";
 import { Paper, Typography, CardMedia, Box } from "@mui/material";
 
 export const SingleCharacter = () => {
@@ -49,7 +48,6 @@ export const SingleCharacter = () => {
               <Typography>
                 {data.status} | {data.species}
               </Typography>
-
               <DetialedSection label={"Origin:"} text={data.origin.name} />
               <DetialedSection
                 label={"Last known location:"}

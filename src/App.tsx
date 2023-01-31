@@ -1,13 +1,13 @@
 import { BrowserRouter } from "react-router-dom";
 import { AppRouter } from "routes/AppRouter";
-import { Box, ThemeProvider } from "@mui/material";
 import { Header, Footer } from "components";
-import "style/global.css";
+import { Box, ThemeProvider, CssBaseline } from "@mui/material";
 import { theme } from "style/theme";
 
 export const App = () => {
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <BrowserRouter>
         <Box
           sx={{

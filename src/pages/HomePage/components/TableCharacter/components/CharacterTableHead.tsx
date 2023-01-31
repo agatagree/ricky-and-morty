@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { OrderByType, OrderType } from "./utils/SortType";
+import { OrderByType, OrderType } from "../utils/SortType";
 import { TableHead, TableRow, TableCell, TableSortLabel } from "@mui/material";
 
 const titleType: OrderByType[] = ["id", "name", "status", "species"];
