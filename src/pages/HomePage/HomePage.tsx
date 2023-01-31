@@ -1,13 +1,12 @@
-import { useState } from "react";
 import { SearchField, TableCharacter } from "./components";
+import { TableProvider } from "./provider/TableProvider";
 
 export const HomePage = () => {
-  const [queryName, setQueryName] = useState("");
 
   return (
-    <>
-      <SearchField queryName={queryName} setQueryName={setQueryName} />
-      <TableCharacter queryName={queryName} />
-    </>
+    <TableProvider>
+      <SearchField />
+      <TableCharacter />
+    </TableProvider>
   );
 };

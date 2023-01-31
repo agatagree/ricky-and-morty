@@ -1,59 +1,44 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { useQuery } from "react-query";
 import { API_URL } from "api/consts";
-import { ErrorHandler } from "utils/ErrorHandler";
-import { Info, Character } from "utils/Types";
-import { useFetch } from "utils/useFetch";
+import { ErrorHandler } from "components";
+import { TableContext } from "../../provider/TableProvider";
 import {
   CharacterTableHead,
   CharacterTableBody,
   Pagination,
 } from "./components";
-import { OrderByType, OrderType } from "./utils/SortType";
 import { TableContainer, Table, Paper } from "@mui/material";
 
-export const TableCharacter = ({ queryName }: { queryName: string }) => {
-  const [currentUrl, setCurrentUrl] = useState(API_URL);
-  const [orderBy, setOrderBy] = useState<OrderByType>("id");
-  const [order, setOrder] = useState<OrderType>("asc");
-  const [page, setPage] = useState(0);
+export const TableCharacter = () => {
+  const { page, queryName } = useContext(TableContext);
 
-  const fetchResult = useFetch(currentUrl);
-  const { data } = fetchResult as { data: Info<Character[]> };
-  const { error, loading } = fetchResult;
+  const fetchData = (page: number, queryName = "") => {
+    return fetch(`${API_URL}?page=${page + 1}&name=${queryName}`).then((res) =>
+      res.json()
+    );
+  };
 
-  useEffect(() => {
-    setCurrentUrl(`${API_URL}?name=${queryName}`);
-    setPage(0);
-  }, [queryName]);
+  const { isLoading, error, data } = useQuery(
+    ["characters", page, queryName],
+    () => fetchData(page, queryName),
+    {
+      keepPreviousData: true,
+    }
+  );
 
   return (
     <>
-      <ErrorHandler error={error} loading={loading} data={data} />
+      <ErrorHandler error={error} loading={isLoading} data={data} />
       {data && !data.error ? (
         <Paper sx={{ mb: 2, overflowX: "auto" }}>
           <TableContainer sx={{ mb: 2 }}>
             <Table aria-labelledby="character-table">
-              <CharacterTableHead
-                setOrderBy={setOrderBy}
-                orderBy={orderBy}
-                setOrder={setOrder}
-                order={order}
-              />
-              <CharacterTableBody
-                characters={data?.results}
-                orderBy={orderBy}
-                order={order}
-              />
+              <CharacterTableHead />
+              <CharacterTableBody characters={data?.results} />
             </Table>
           </TableContainer>
-          <Pagination
-            data={data}
-            setCurrentUrl={setCurrentUrl}
-            setOrderBy={setOrderBy}
-            setOrder={setOrder}
-            page={page}
-            setPage={setPage}
-          />
+          <Pagination data={data} />
         </Paper>
       ) : null}
     </>

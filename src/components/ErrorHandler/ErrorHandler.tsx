@@ -1,8 +1,8 @@
 import { AlertMessage, Loader } from "components";
-import { Character, Info } from "utils/Types";
+import { Character, Info } from "types/Types";
 
 type ErrorHandlerType = {
-  error: string | null;
+  error: string | unknown;
   loading: boolean;
   data: Info<Character[]> | Character | undefined;
 };

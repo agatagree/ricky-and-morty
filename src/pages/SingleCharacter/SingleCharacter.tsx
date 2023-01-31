@@ -1,20 +1,24 @@
+import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { API_URL } from "api/consts";
-import { ErrorHandler } from "utils/ErrorHandler";
-import { Character } from "utils/Types";
-import { useFetch } from "utils/useFetch";
+import { ErrorHandler } from "components";
 import { DetialedSection, EpisodeList } from "./components";
 import { Paper, Typography, CardMedia, Box } from "@mui/material";
 
 export const SingleCharacter = () => {
   const { id } = useParams();
-  const fetchResult = useFetch(`${API_URL}/${id}`);
-  const { data } = fetchResult as { data: Character };
-  const { error, loading } = fetchResult;
+
+  const fetchData = (id: number) => {
+    return fetch(`${API_URL}/${id}`).then((res) => res.json());
+  };
+
+  const { isLoading, error, data } = useQuery(["character", id], () =>
+    fetchData(parseInt(id || "0", 10))
+  );
 
   return (
     <>
-      <ErrorHandler error={error} loading={loading} data={data} />
+      <ErrorHandler error={error} loading={isLoading} data={data} />
       {data && !data.error ? (
         <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
           <Paper

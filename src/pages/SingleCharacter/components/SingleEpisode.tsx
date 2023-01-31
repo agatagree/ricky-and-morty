@@ -1,19 +1,21 @@
-import { Dispatch, SetStateAction } from "react";
-import { Episode } from "utils/Types";
-import { useFetch } from "utils/useFetch";
+import { useQuery } from "react-query";
 import { Typography, Skeleton } from "@mui/material";
 
 type SingleEpisodeTypes = {
   url: string;
-  setErrorState: Dispatch<SetStateAction<boolean>>;
+  setErrorState: (value: boolean) => void;
 };
 
 export const SingleEpisode = ({ url, setErrorState }: SingleEpisodeTypes) => {
-  const fetchResult = useFetch(url);
-  const { data } = fetchResult as { data: Episode };
-  const { error, loading } = fetchResult;
+  const fetchData = (url: string) => {
+    return fetch(url).then((res) => res.json());
+  };
 
-  if (loading === true) {
+  const { isLoading, error, data } = useQuery(["episode", url], () =>
+    fetchData(url)
+  );
+
+  if (isLoading === true) {
     return (
       <Skeleton
         variant="rounded"

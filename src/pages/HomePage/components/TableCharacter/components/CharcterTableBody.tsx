@@ -1,19 +1,15 @@
-import { Character } from "utils/Types";
-import { OrderByType, OrderType } from "../utils/SortType";
+import { useContext } from "react";
+import { TableContext } from "pages/HomePage/provider/TableProvider";
 import { CharacterTableRow } from "./CharacterTableRow";
 import { TableBody } from "@mui/material";
+import { Character } from "types/Types";
 
-type CharacterTableType = {
+type TableBodyType = {
   characters: Character[] | undefined;
-  orderBy: OrderByType;
-  order: OrderType;
 };
 
-export const CharacterTableBody = ({
-  characters,
-  orderBy,
-  order,
-}: CharacterTableType) => {
+export const CharacterTableBody = ({ characters }: TableBodyType) => {
+  const { order, orderBy } = useContext(TableContext);
   if (orderBy !== "id") {
     characters?.sort((a, b) => {
       if (a[orderBy] < b[orderBy]) {

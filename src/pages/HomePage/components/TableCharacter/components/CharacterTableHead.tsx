@@ -1,22 +1,12 @@
-import { Dispatch, SetStateAction } from "react";
-import { OrderByType, OrderType } from "../utils/SortType";
+import { useContext } from "react";
+import { TableContext } from "../../../provider/TableProvider";
+import { OrderByType } from "../../../types/SortType";
 import { TableHead, TableRow, TableCell, TableSortLabel } from "@mui/material";
 
 const titleType: OrderByType[] = ["id", "name", "status", "species"];
 
-type SortType = {
-  orderBy: OrderByType;
-  setOrderBy: Dispatch<SetStateAction<OrderByType>>;
-  order: OrderType;
-  setOrder: Dispatch<SetStateAction<OrderType>>;
-};
-
-export const CharacterTableHead = ({
-  setOrderBy,
-  setOrder,
-  order,
-  orderBy,
-}: SortType) => {
+export const CharacterTableHead = () => {
+  const { order, setOrder, orderBy, setOrderBy } = useContext(TableContext);
   const handleSort = (props: OrderByType) => {
     const isAsc = orderBy === props && order === "asc";
     setOrder(isAsc ? "desc" : "asc");

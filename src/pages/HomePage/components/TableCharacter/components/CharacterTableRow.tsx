@@ -1,5 +1,5 @@
-import { Character } from "utils/Types";
 import { TableRow, TableCell, Link } from "@mui/material";
+import { Character } from "types/Types";
 
 export const CharacterTableRow = ({ character }: { character: Character }) => {
   return (
@@ -8,11 +8,7 @@ export const CharacterTableRow = ({ character }: { character: Character }) => {
       <TableCell>{character.status}</TableCell>
       <TableCell>{character.species}</TableCell>
       <TableCell>
-        <Link
-          href={`/${character.id}`}
-          underline="hover"
-          color="inherit"
-        >
+        <Link href={`/${character.id}`} underline="hover" color="inherit">
           {character.url}
         </Link>
       </TableCell>

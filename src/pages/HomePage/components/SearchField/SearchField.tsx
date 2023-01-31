@@ -1,4 +1,5 @@
-import { Dispatch, SetStateAction } from "react";
+import { useContext } from "react";
+import { TableContext } from "pages/HomePage/provider/TableProvider";
 import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import {
@@ -9,19 +10,26 @@ import {
   InputAdornment,
 } from "@mui/material";
 
-type QueryNameType = {
-  queryName: string;
-  setQueryName: Dispatch<SetStateAction<string>>;
-};
+export const SearchField = () => {
+  const { queryName, setQueryName, setPage } = useContext(TableContext);
 
-export const SearchField = ({ queryName, setQueryName }: QueryNameType) => {
+  const handleSearch = (value: string) => {
+    setQueryName(value);
+    setPage(0);
+  };
+
+  const handleReset = () => {
+    setQueryName("");
+    setPage(0);
+  };
+
   return (
     <Box>
       <FormControl sx={{ mt: 1 }} variant="outlined" fullWidth>
         <OutlinedInput
           placeholder="Name"
           id="outlined-adornment-search"
-          onChange={(e) => setQueryName(e.target.value)}
+          onChange={(e) => handleSearch(e.target.value)}
           value={queryName}
           startAdornment={
             <InputAdornment position="start">
@@ -32,7 +40,7 @@ export const SearchField = ({ queryName, setQueryName }: QueryNameType) => {
             <InputAdornment position="end">
               <IconButton
                 aria-label="clear search result"
-                onClick={() => setQueryName("")}
+                onClick={handleReset}
                 edge="end"
               >
                 {queryName ? <ClearRoundedIcon /> : null}
