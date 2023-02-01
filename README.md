@@ -1,8 +1,8 @@
 ## Project Overview 🐱‍🚀🎉
 
 This is mini app, based on [Ricky and Morty API](https://rickandmortyapi.com/). 
-As a user, you can 
-- see a characters table list, navigate through the table pages (Api based pagination and filtration by name + sort by name, species, status on single list page)
+As a user, you can:
+- see a characters table list, navigate through the table pages (Api based pagination and filtration + sort by name, species, status on single list page)
 - check choosen character details with list of episodes
 
 
