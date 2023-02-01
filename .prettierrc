@@ -4,8 +4,9 @@
   "importOrder": [
     "^react(.*)",
     "^api",
-    "^provider/",
-    "^components/",
+    "^routes",
+    "^pages",
+    "^components",
     "^utils",
     "antd/(.*)",
     "<THIRD_PARTY_MODULES>",
