@@ -43,7 +43,9 @@ export const SearchField = () => {
                 onClick={handleReset}
                 edge="end"
               >
-                {queryName ? <ClearRoundedIcon /> : null}
+                {queryName ? (
+                  <ClearRoundedIcon data-testid="clear-icon" />
+                ) : null}
               </IconButton>
             </InputAdornment>
           }

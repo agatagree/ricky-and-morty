@@ -8,7 +8,7 @@ export const DetialedSection = ({
   text: string;
 }) => {
   return (
-    <Box sx={{ mt: 2}}>
+    <Box sx={{ mt: 2 }}>
       <Typography variant="h6">{label}</Typography>
       <Typography>{text}</Typography>
     </Box>
